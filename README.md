@@ -1,22 +1,3 @@
-# Accessible Notes App (Jetpack Compose) - Final Assignment
-
-A functional notes application built for Android using Jetpack Compose. This app allows users to create, view, edit, and deleteOkay, here is the complete `README.md` file code again, based on all our discussions notes, with added features for scheduling timed reminder notifications and a focus on accessibility. Data is stored locally using the Room persistence library.
-
-## App Description
-
-This application provides a straightforward interface for managing personal notes. Users can perform standard CRUD ( and the project requirements.
-
-Make sure to:
-
-1.  **Create a file named `README.md`**Create, Read, Update, Delete) operations on notes, each consisting of a title and content.
-
-Key functionalities include:
-* (exactly like that, case-sensitive) in the **root directory** of your Android Studio project.
-2.  **Copy   **Home Screen:** Displays a scrollable list of all saved notes. Each item shows the note's title, a preview and paste** the entire content below into that `README.md` file.
-3.  **Review and customize of the content, and the scheduled reminder time (if one has been set). A Floating Action Button (FAB) allows users to initiate adding a new note.
-*   **Add/Edit Screen:** Allows creating a new note or modifying an existing** any specific details if needed (though it should be quite comprehensive for your project).
-
-```markdown
 # Accessible Notes App (Jet one. Users input a title (required) and content. Optionally, they can use Date and Time pickers to set apack Compose) - Final Assignment
 
 A functional notes application built for Android using Jetpack Compose. This app allows users to create, view, edit, and delete notes, with added features for scheduling timed reminder notifications and a focus on accessibility. Data specific time for a future reminder notification.
