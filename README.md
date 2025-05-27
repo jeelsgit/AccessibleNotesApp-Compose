@@ -1,4 +1,4 @@
-# Accessible Notes App (Jetpack Compose) - Final Assignment
+# Accessible Notes App (Jetpack Compose)
 
 A functional notes application built for Android using Jetpack Compose. This app allows users to create, view, edit, and delete notes, with added features for scheduling timed reminder notifications and a focus on accessibility. Data is stored locally using the Room persistence library.
 
