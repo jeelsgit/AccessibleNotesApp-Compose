@@ -13,7 +13,7 @@ Key functionalities include:
 *   **Data Persistence:** All notes are saved locally on the device using the Room Persistence Library, ensuring data survives app restarts.
 *   **Notifications:** Provides immediate feedback when a new note is added and allows users to schedule timed reminders for specific notes.
 
-## Accessibility Features (Approx. 180 words)
+## Accessibility Features
 
 Accessibility was a core focus to ensure the app is usable by a wider range of users, including those relying on assistive technologies. Key features implemented include:
 
