@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <!-- ===================================================================== -->
+    <!--                            PERMISSIONS                                -->
+    <!-- ===================================================================== -->
+    <!-- Permissions required by the application are declared here. -->
+
+    <!-- Required for posting any kind of notification on Android 13 (API 33) and higher. -->
+    <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
+
+    <!-- Required for using AlarmManager to schedule EXACT alarms, needed for precise reminders. -->
+    <!-- Use SCHEDULE_EXACT_ALARM permission specifically for apps targeting API 31-32. -->
+    <uses-permission android:name="android.permission.SCHEDULE_EXACT_ALARM"
+        android:maxSdkVersion="32" /> <!-- This ensures the permission is only requested on API 31 & 32. -->
+    <!-- Use USE_EXACT_ALARM permission specifically for apps targeting API 33+. -->
+    <uses-permission android:name="android.permission.USE_EXACT_ALARM" />
+
+    <!-- Allows the app's BroadcastReceiver to receive the BOOT_COMPLETED action. -->
+    <!-- Necessary if the app needs to reschedule alarms after the device restarts. -->
+    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
+
+    <!-- Allows the app to keep the processor from sleeping or the screen from dimming. -->
+    <!-- Often recommended when using AlarmManager to ensure the device can wake up to fire the alarm. -->
+    <uses-permission android:name="android.permission.WAKE_LOCK" />
+
+
+    <!-- ===================================================================== -->
+    <!--                            APPLICATION                                -->
+    <!-- ===================================================================== -->
+    <!-- Defines the application itself and its components. -->
+    <application
+        android:allowBackup="true"
+        android:dataExtractionRules="@xml/data_extraction_rules"
+        android:fullBackupContent="@xml/backup_rules"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:theme="@style/Theme.FinalApplication"
+        tools:targetApi="34">
+        <!-- tools:targetApi helps Lint checks; should align with project's targetSdk -->
+
+        <!-- Main Activity: The primary entry point for the UI. -->
+        <activity
+            android:name=".MainActivity"
+            android:exported="true"
+            android:label="@string/app_name"
+            android:theme="@style/Theme.FinalApplication">
+
+            <!-- Launcher Intent Filter: Makes this Activity the main entry point -->
+            <!-- shown in the device's app launcher. -->
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+
+            <!-- Deep Link Intent Filter: Allows this Activity to be launched -->
+            <!-- by an Intent with ACTION_VIEW and a specific data URI pattern. -->
+            <!-- Used here to open a specific note from a notification. -->
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+                <!-- Defines the custom URI structure for the deep link. -->
+                <!-- Scheme "notesapp" and host "note" must match Navigation/Receiver code. -->
+                <data android:scheme="notesapp" android:host="note" />
+            </intent-filter>
+        </activity>
+
+        <!-- Broadcast Receiver: Listens for system events like scheduled alarms and boot completion. -->
+        <receiver
+            android:name=".notifications.NotificationReceiver"
+            android:enabled="true"
+            android:exported="false">
+            <!-- exported=false: Receiver cannot be called by apps outside this one, except for system broadcasts it's registered for via intent-filter. -->
+            <intent-filter>
+                <!-- Listens for the BOOT_COMPLETED system broadcast action. -->
+                <action android:name="android.intent.action.BOOT_COMPLETED" />
+            </intent-filter>
+        </receiver>
+
+    </application>
+
+</manifest>
